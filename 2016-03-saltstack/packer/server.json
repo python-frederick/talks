@@ -1,0 +1,42 @@
+{
+  "variables": {
+  "aws_access_key": "",
+  "aws_secret_key": ""
+  },
+
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "us-east-1",
+      "source_ami": "ami-#######",
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "salt{{timestamp}}"
+    },
+    {
+      "type":         "null",
+      "ssh_host":     "salt.domain.develop",
+      "ssh_username": "vagrant",
+      "ssh_private_key_file": "../.vagrant/machines/salt/virtualbox/private_key"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "scripts/setup_server.sh",
+      "destination": "/tmp/setup_server.sh"
+    },
+    {
+      "type": "file",
+      "source": "files/master",
+      "destination": "/tmp/master"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/install_server.sh"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+# Purpose
+
+This formula is primarily meant to configure a reverse proxy to another service,
+but can also be used to configure a very simple webserver pointing at a static directory.
+
+# Dependencies
+
+This formula requires that a fail2ban.nginx formula exists
+
+# Usage
+
+These are jinja macros, so in addition to including nginx in salt, you need to import the macro in jinja.
+
+``` myproxy.sls
+include:
+  - nginx
+
+{% from "nginx/proxy.sls" import proxy %}
+{{ proxy(site='default',
+         server='localhost',
+         port='12345',
+         http='redirect',
+         https=True) }}
+```

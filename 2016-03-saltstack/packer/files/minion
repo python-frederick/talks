@@ -1,0 +1,2 @@
+master: salt.domain.develop
+log_level: debug

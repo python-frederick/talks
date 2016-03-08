@@ -1,0 +1,8 @@
+interface: 0.0.0.0
+auto_accept: True
+fileserver_backend:
+  - roots
+  - git
+gitfs_remotes:
+  - https://github.com/saltstack-formulas/ntp-formula
+  - https://github.com/saltstack-formulas/sun-java-formula

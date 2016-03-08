@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  if Vagrant.has_plugin?('landrush')
+    config.landrush.enabled = true
+    config.landrush.tld = 'develop'
+    # config.landrush.guest_redirect_dns = false
+  end
+
+  config.vm.define 'salt-minion' do |base|
+    base.vm.provider 'virtualbox' do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.memory = 2048
+      v.cpus = 1
+    end
+    base.vm.box = 'ubuntu/trusty64'
+    base.vm.hostname = 'salt-minion.domain.develop'
+    base.vm.network 'private_network', type: 'dhcp'
+  end
+
+  config.vm.define 'salt' do |base|
+    base.vm.provider 'virtualbox' do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.memory = 512
+      v.cpus = 1
+    end
+    base.vm.box = 'ubuntu/trusty64'
+    base.vm.hostname = 'salt.domain.develop'
+    base.vm.network 'private_network', type: 'dhcp'
+    base.vm.synced_folder "salt-files/", "/srv"
+  end
+end

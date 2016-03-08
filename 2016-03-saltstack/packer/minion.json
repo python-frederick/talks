@@ -1,0 +1,41 @@
+{
+  "variables": {
+  "aws_access_key": "",
+  "aws_secret_key": ""
+  },
+
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "us-east-1",
+      "source_ami": "ami-######",
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "saltMinion{{timestamp}}"
+    },
+    {
+      "type":         "null",
+      "ssh_host":     "salt-minion.domain.develop",
+      "ssh_username": "vagrant",
+      "ssh_private_key_file": "../.vagrant/machines/salt-minion/virtualbox/private_key"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "files/minion",
+      "destination": "/tmp/minion"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/install_minion.sh",
+      "environment_vars": [
+        "SECRET={{user `aws_secret_key`}}",
+        "ACCESS={{user `aws_access_key`}}"
+      ]
+    }
+  ]
+}
