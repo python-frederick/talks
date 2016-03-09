@@ -8,11 +8,6 @@ Vagrant abstracts the management of the virtualboxs away from the users into the
 
 https://www.vagrantup.com/docs/installation/
 
-# Setup packer
-Packer sets up the instances salt and salt-minion with the prebuilt install scripts.
-
-https://www.packer.io/intro/getting-started/setup.html
-
 ## Install landrush
 Landrush (when it works) sets up local dns resolution of the salt/salt-minion.domain.develop instances.
 
@@ -20,6 +15,11 @@ The packer *null* build relies on the landrush plugin for dns.
 ```
 vagrant plugin install landrush
 ```
+
+# Setup packer
+Packer sets up the instances salt and salt-minion with the prebuilt install scripts.
+
+https://www.packer.io/intro/getting-started/setup.html
 
 # Build instances
 ```
