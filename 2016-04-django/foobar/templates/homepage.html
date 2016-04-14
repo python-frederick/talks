@@ -1,0 +1,8 @@
+<h1>Awesome page</h1>
+
+
+<ul>
+{% for article in article_list %}
+    <li>{{ article.title|upper }}</li>
+{% endfor %}
+</ul>
