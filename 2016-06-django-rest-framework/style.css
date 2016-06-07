@@ -1,0 +1,12 @@
+h4, p, li {
+    font-size: 36px;
+}
+
+code {
+    background-color: #f5f89c;
+    padding: 2px;
+}
+
+.remark-code {
+    font-size: 24px;
+}
