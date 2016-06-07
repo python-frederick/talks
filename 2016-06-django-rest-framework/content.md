@@ -6,6 +6,8 @@ class: center, middle
 
 Matt Layman [@mblayman](https://twitter.com/mblayman)
 
+[mattlayman.com](http://www.mattlayman.com)
+
 ---
 
 # Let's make an API
@@ -190,3 +192,5 @@ class: center, middle
 # Questions?
 
 Matt Layman [@mblayman](https://twitter.com/mblayman)
+
+[mattlayman.com](http://www.mattlayman.com)
