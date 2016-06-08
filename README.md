@@ -1,5 +1,7 @@
 # Python Frederick Talks
 
+![Python Frederick](https://raw.githubusercontent.com/python-frederick/talks/master/python-frederick.png)
+
 This repository contains a collection of talks presented at Python Frederick.
 
 Possible talk topics are listed as GitHub issues.
