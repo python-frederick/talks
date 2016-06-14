@@ -1,0 +1,39 @@
+---
+- name: install ntp on all severs
+  hosts: all
+  remote_user: vagrant
+  become: True
+  vars:
+    ntpserver1: 0.pool.ntp.org
+    ntpserver2: 1.pool.ntp.org
+    ntpserver3: 2.pool.ntp.org
+    ntpserver4: 3.pool.ntp.org
+    # ntpservers:
+    #   - 0.pool.ntp.org
+    #   - 1.pool.ntp.org
+    #   - 2.pool.ntp.org
+    #   - 3.pool.ntp.org
+  tasks:
+    - name: install ntp
+      yum:
+        name: ntp
+        state: latest
+    - name: configure ntp
+      template:
+        src: ntp.conf.j2
+        dest: /etc/ntp.conf
+      notify:
+        - restart ntp
+    - name: start ntp
+      service:
+        name: ntpd
+        state: started
+        enabled: True
+  handlers:
+    - name: restart ntp
+      service:
+        name: ntpd
+        state: restarted
+
+
+

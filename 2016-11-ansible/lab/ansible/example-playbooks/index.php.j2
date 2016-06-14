@@ -1,0 +1,31 @@
+<?php
+$apache_version = apache_get_version();
+$php_version = phpversion();
+$link = mysqli_connect('{{ hostvars[groups['db'][0]]['ansible_eth1']['ipv4']['address'] }}', '{{ db_user }}', '{{ db_password }}') or die(mysqli_connect_error($link));
+$db_list = mysqli_query($link, "SHOW DATABASES;");
+$db_version =  mysqli_get_server_info($link);
+mysqli_close($link);
+?>
+
+<html>
+  <header><title>My Awsome App</title></header>
+  <body>
+    <?php
+      Print "<h1>Hello, World!</h1>";
+      Print "I am a web server on <b>{{ ansible_hostname }}</b></br>";
+      Print "I was configured by Ansible, untouched by human hands! </br>";
+      Print "<h3>Here are some fun facts about me</h3>";
+      Print "Apache Version: " . $apache_version . "</br>";
+      Print "MySQL Version: " . $db_version . "</br>";
+      Print "PHP Version: " . $php_version . "</br>";
+      Print "List of Databases:";
+      Print "<ul>";
+      while ($row = mysqli_fetch_assoc($db_list)) {
+        echo "<li>" . $row['Database'] . "</li>";
+        }
+      Print "</ul>";
+    ?>
+    {{ ansible_managed }}
+  </body>
+</html>
+

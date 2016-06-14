@@ -1,0 +1,28 @@
+---
+- name: install mysql
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+   - mysql-server
+   - MySQL-python
+- name: configure mysql
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+  notify: restart mysqld
+- name: start mysqld
+  service:
+    name: "{{ mysql_service }}"
+    state: started
+- name: create db
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
+- name: create db user
+  mysql_user:
+    name: "{{ vault_db_user }}"
+    password: "{{ vault_db_password }}"
+    priv: "*.*:ALL"
+    host: "%"
+    state: present

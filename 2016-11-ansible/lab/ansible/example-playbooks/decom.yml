@@ -1,0 +1,70 @@
+---
+- name: remove ntp on all severs
+  hosts: all
+  remote_user: vagrant
+  become: True
+  tasks:
+    - name: uninstall ntp
+      yum:
+        name: ntp
+        state: absent
+    - name: unconfigure ntp
+      file:
+        state: absent
+        path: /etc/ntp.conf
+
+- name: decom db server
+  hosts: db
+  remote_user: vagrant
+  become: True
+  tasks:
+    - name: uninstall mysql
+      yum:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+       - mysql-server
+       - MySQL-python
+    - name: unconfigure mysql
+      file:
+        state: absent
+        path: "{{ item }}"
+      with_items:
+        - /etc/my.cnf
+        - /var/lib/mysql
+
+- name: decom web servers
+  hosts: web
+  remote_user: vagrant
+  become: True
+
+  tasks:
+    - name: uninstall httpd, php, php-mysql
+      yum:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+       - httpd
+       - php
+       - php-mysql
+    - name: remove configuration files
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /etc/httpd/conf.d/headers.conf
+        - /var/www/html/index.php
+
+- name: decom lb server
+  hosts: lb
+  remote_user: vagrant
+  become: True
+  tasks:
+    - name: uninstall haproxy
+      yum:
+        name: haproxy
+        state: absent
+    - name: unconfigure haproxy
+      file:
+        state: absent
+        path: /etc/haproxy/haproxy.cfg

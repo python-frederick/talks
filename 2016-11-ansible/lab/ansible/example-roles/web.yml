@@ -1,0 +1,9 @@
+---
+- name: provision web servers
+  hosts: web
+  remote_user: vagrant
+  become: True
+
+  roles:
+    - common
+    - web

@@ -1,0 +1,11 @@
+[lb]
+node-01
+
+[db]
+node-02
+
+[web]
+node-03
+node-04
+#node-05
+#node-06

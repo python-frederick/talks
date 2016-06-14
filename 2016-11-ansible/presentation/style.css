@@ -1,0 +1,24 @@
+h4, p, li {
+  font-size: 25px;
+}
+
+code {
+  background-color: #f5f89c;
+  padding: 2px;
+}
+
+.remark-code {
+  font-size: 13px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img[alt=python-frederick] {
+  width: 200px;
+}
+
+img[alt=ansible-logo] {
+  width: 200px;
+}

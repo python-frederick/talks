@@ -1,0 +1,45 @@
+---
+- name: configure db server
+  hosts: db
+  remote_user: vagrant
+  become: True
+  vars:
+    mysql_service: mysqld
+    mysql_port: 3306
+    db_user: dbuser
+    db_name: my_awsome_db
+    db_password: abc123
+  tasks:
+    - name: install mysql
+      yum:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+       - mysql-server
+       - MySQL-python
+    - name: configure mysql
+      template:
+        src: my.cnf.j2
+        dest: /etc/my.cnf
+      notify: restart mysqld
+    - name: start mysqld
+      service:
+        name: "{{ mysql_service }}"
+        state: started
+    - name: create db
+      mysql_db:
+        name: "{{ db_name }}"
+        state: present
+    - name: create db user
+      mysql_user:
+        name: "{{ db_user }}"
+        password: "{{ db_password }}"
+        priv: "*.*:ALL"
+        host: "%"
+        state: present
+  handlers:
+    - name: restart mysqld
+      service:
+        name: "{{ mysql_service }}"
+        state: restarted
+

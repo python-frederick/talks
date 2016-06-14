@@ -1,0 +1,4 @@
+---
+mysql_service: mysqld
+mysql_port: 3306
+db_name: my_awsome_db

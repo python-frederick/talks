@@ -1,0 +1,137 @@
+---
+- name: install ntp on all severs
+  hosts: all
+  remote_user: vagrant
+  become: True
+  vars:
+    ntpserver1: 0.pool.ntp.org
+    ntpserver2: 1.pool.ntp.org
+    ntpserver3: 2.pool.ntp.org
+    ntpserver4: 3.pool.ntp.org
+  tasks:
+    - name: install ntp
+      yum:
+        name: ntp
+        state: latest
+    - name: configure ntp
+      template:
+        src: ntp.conf.j2
+        dest: /etc/ntp.conf
+      notify:
+        - restart ntp
+    - name: start ntp
+      service:
+        name: ntpd
+        state: started
+        enabled: True
+      tags: ntp
+  handlers:
+    - name: restart ntp
+      service:
+        name: ntpd
+        state: restarted
+
+- name: provision db server
+  hosts: db
+  remote_user: vagrant
+  become: True
+  vars:
+    mysql_service: mysqld
+    mysql_port: 3306
+    db_user: dbuser
+    db_name: my_awsome_db
+    db_password: abc123
+  tasks:
+    - name: install mysql
+      yum:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+       - mysql-server
+       - MySQL-python
+    - name: configure mysql
+      template:
+        src: my.cnf.j2
+        dest: /etc/my.cnf
+      notify: restart mysqld
+    - name: start mysqld
+      service:
+        name: "{{ mysql_service }}"
+        state: started
+    - name: create db
+      mysql_db:
+        name: "{{ db_name }}"
+        state: present
+    - name: create db user
+      mysql_user:
+        name: "{{ db_user }}"
+        password: "{{ db_password }}"
+        priv: "*.*:ALL"
+        host: "%"
+        state: present
+  handlers:
+    - name: restart mysqld
+      service:
+        name: "{{ mysql_service }}"
+        state: restarted
+
+- name: provision web servers
+  hosts: web
+  remote_user: vagrant
+  become: True
+  vars:
+    db_user: dbuser
+    db_password: abc123
+
+  tasks:
+    - name: install httpd, php, php-mysql
+      yum:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+       - httpd
+       - php
+       - php-mysql
+    - name: start httpd
+      service:
+        name: httpd
+        state: started
+        enabled: True
+    - name: create the index.php file
+      template:
+        src: index.php.j2
+        dest: /var/www/html/index.php
+    - name: create headers.conf file
+      template:
+          src: headers.conf.j2
+          dest: /etc/httpd/conf.d/headers.conf
+      notify: restart httpd
+  handlers:
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+
+- name: configure lb server
+  hosts: lb
+  remote_user: vagrant
+  become: True
+  tasks:
+    - name: install haproxy
+      yum:
+        name: haproxy
+    - name: start haproxy
+      service:
+        name: haproxy
+        state: started
+        enabled: True
+    - name: configure haproxy
+      template:
+        src: haproxy.cfg.j2
+        dest: /etc/haproxy/haproxy.cfg
+      notify: restart haproxy
+  handlers:
+    - name: restart haproxy
+      service:
+        name: haproxy
+        state: restarted

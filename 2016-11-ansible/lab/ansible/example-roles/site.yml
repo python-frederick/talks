@@ -1,0 +1,4 @@
+---
+- include: lb.yml
+- include: db.yml
+- include: web.yml
