@@ -1,0 +1,3 @@
+[submodule "2016-07-boto3"]
+	path = 2016-07-boto3
+	url = git@github.com:python-frederick/2016-07-boto3.git
