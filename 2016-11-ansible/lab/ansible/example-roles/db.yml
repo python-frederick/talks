@@ -1,0 +1,8 @@
+---
+- name: configure db server
+  hosts: db
+  remote_user: vagrant
+  become: True
+  roles:
+    - common
+    - db

@@ -1,0 +1,44 @@
+---
+- hosts: mgmt
+  become: True
+  tasks:
+
+    - name: install insecure vagrant key
+      get_url:
+        url: https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant
+        dest: /home/vagrant/.ssh/id_rsa
+        owner: vagrant
+        group: vagrant
+        mode: 0600
+
+    - name: update /etc/hosts
+      lineinfile:
+        dest: /etc/hosts
+        regexp: '{{ item.regex }}'
+        line: '{{ item.line }}'
+        owner: root
+        group: root
+        mode: 0644
+      with_items:
+        - { regex: '^10\.0\.15\.10', line: '10.0.15.10  mgmt' }
+        - { regex: '^10\.0\.15\.21', line: '10.0.15.21  node-01' }
+        - { regex: '^10\.0\.15\.22', line: '10.0.15.22  node-02' }
+        - { regex: '^10\.0\.15\.23', line: '10.0.15.23  node-03' }
+        - { regex: '^10\.0\.15\.24', line: '10.0.15.24  node-04' }
+        - { regex: '^10\.0\.15\.25', line: '10.0.15.25  node-05' }
+        - { regex: '^10\.0\.15\.26', line: '10.0.15.26  node-06' }
+
+    - name: ensure /vagrant/home/bin exists
+      file:
+        path: /home/vagrant/bin
+        state: directory
+        mode: 0755
+
+    - name: install decom script
+      file:
+        src: /vagrant/decom.sh
+        dest: /home/vagrant/bin/decom
+        owner: vagrant
+        group: vagrant
+        state: link
+

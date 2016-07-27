@@ -1,0 +1,23 @@
+# {{ ansible_managed }}
+
+driftfile /var/lib/ntp/drift
+
+restrict 127.0.0.1
+restrict -6 ::1
+
+server {{ ntpserver1 }}
+server {{ ntpserver2 }}
+server {{ ntpserver3 }}
+server {{ ntpserver4 }}
+{# {% for server in ntpservers -%}
+  server {{ server }}
+{% endfor %} #}
+{# {% for number in range(4) -%}
+  server {{ number }}.pool.ntp.org
+{% endfor %}
+ #}
+
+includefile /etc/ntp/crypto/pw
+
+keys /etc/ntp/keys
+

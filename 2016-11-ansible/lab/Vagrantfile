@@ -1,0 +1,46 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # create mgmt node
+  config.vm.define :mgmt do |mgmt_config|
+      mgmt_config.vm.box = "surefoot/centos6-64-min"   # packed with git@github.com:kenfusion/packer.git
+      # mgmt_config.vm.box = "ubuntu/trusty64"
+      mgmt_config.ssh.insert_key = false
+      mgmt_config.vm.hostname = "mgmt"
+      mgmt_config.vm.network :private_network, ip: "10.0.15.10"
+      mgmt_config.vm.provider "virtualbox" do |vb|
+        vb.memory = "256"
+        vb.linked_clone = true
+      end
+      mgmt_config.vm.provision :ansible_local  do |ansible|
+          ansible.playbook = "bootstrap.yml"
+      end
+      # mgmt_config.vm.provision :shell, path: "bootstrap.sh", privileged: false
+      mgmt_config.vm.provision "file", source: "ansible.cfg", destination: ".ansible.cfg"
+      mgmt_config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+      mgmt_config.vm.provision "file", source: "~/.gitignore_global", destination: ".gitignore_global"
+      mgmt_config.vm.provision "file", source: "~/.dircolors", destination: ".dircolors"
+      mgmt_config.vm.provision "file", source: "~/.bash_aliases", destination: ".bash_aliases"
+      mgmt_config.vm.synced_folder "ansible/", "/home/vagrant/ansible"
+  end
+
+  # add some nodes
+  # https://docs.vagrantup.com/v2/vagrantfile/tips.html
+  (1..4).each do |i|
+    config.vm.define "node-0#{i}" do |node|
+        node.vm.box = "surefoot/centos6-64-min"  # packed with git@github.com:kenfusion/packer.git
+        # node.vm.box = "ubuntu/trusty64"
+        node.ssh.insert_key = false
+        node.vm.hostname = "node-0#{i}"
+        node.vm.network :private_network, ip: "10.0.15.2#{i}"
+        node.vm.network "forwarded_port", guest: 80, host: "800#{i}"
+        node.vm.provider "virtualbox" do |vb|
+          vb.memory = "256"
+          vb.linked_clone = true
+        end
+    end
+  end
+
+end

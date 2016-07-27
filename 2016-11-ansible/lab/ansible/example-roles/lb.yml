@@ -1,0 +1,8 @@
+---
+- name: configure lb server
+  hosts: lb
+  remote_user: vagrant
+  become: True
+  roles:
+    - common
+    - lb
