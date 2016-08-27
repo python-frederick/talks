@@ -1,4 +1,4 @@
-#IPython/JuPyTeR
+#IPython/Jupyter
 ##A WebUI for quick, interactive programming
 
 Web-based multiline REPLs are a powerful tool for answering questions with code.
