@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="">
+  <title>Pygame</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Pygame</h1>
+  <h2 class="author"></h2>
+  <h3 class="date">Joe Naegele</h3>
+</section>
+
+<section id="pygame" class="slide level2">
+<h1>Pygame</h1>
+<p><a href="http://pygame.org" class="uri">http://pygame.org</a></p>
+</section>
+<section id="pygame-1" class="slide level2">
+<h1>Pygame</h1>
+<ul>
+<li class="fragment">Background</li>
+<li class="fragment">API</li>
+<li class="fragment">Demo</li>
+</ul>
+</section>
+<section id="pygame-2" class="slide level2">
+<h1>Pygame</h1>
+<p>Python library designed for writing games</p>
+<ul>
+<li class="fragment">Written by Pete Shinners</li>
+<li class="fragment">Can be used for more than just games</li>
+<li class="fragment">Old and not very &quot;Pythonic&quot;</li>
+</ul>
+</section>
+<section id="pygame-3" class="slide level2">
+<h1>Pygame</h1>
+<ul>
+<li class="fragment">Cross-platform</li>
+<li class="fragment">Does not require OpenGL</li>
+<li class="fragment">Runs on Android but not iOS</li>
+</ul>
+</section>
+<section id="pygame-4" class="slide level2">
+<h1>Pygame</h1>
+<ul>
+<li class="fragment">Small codebase</li>
+<li class="fragment">Easy to learn</li>
+<li class="fragment">Simple to use</li>
+</ul>
+</section>
+<section id="pygame-5" class="slide level2">
+<h1>Pygame</h1>
+<ul>
+<li class="fragment">Uses optimized C and assembly code for its core functions</li>
+<li class="fragment">Significantly faster than pure Python code</li>
+<li class="fragment">Relatively slower than most libraries/languages</li>
+</ul>
+</section>
+<section id="sdl" class="slide level2">
+<h1>SDL</h1>
+<p><a href="https://www.libsdl.org/">Simple DirectMedia Layer</a></p>
+<ul>
+<li class="fragment">Well-established (since 1998)</li>
+<li class="fragment">Cross-platform C library</li>
+<li class="fragment"><p>Provides low-level access to hardware:</p>
+<ul>
+<li class="fragment">audio</li>
+<li class="fragment">graphics</li>
+<li class="fragment">keyboard, mouse, joystick</li>
+</ul></li>
+</ul>
+</section>
+<section id="alternatives" class="slide level2">
+<h1>Alternatives</h1>
+</section>
+<section id="pyglet" class="slide level2">
+<h1>Pyglet</h1>
+<p><a href="http://pyglet.org" class="uri">http://pyglet.org</a></p>
+<ul>
+<li class="fragment">Built on OpenGL</li>
+<li class="fragment">More &quot;Pythonic&quot; API</li>
+<li class="fragment">Smaller community</li>
+</ul>
+</section>
+<section id="kivy" class="slide level2">
+<h1>Kivy</h1>
+<p><a href="http://kivy.org" class="uri">http://kivy.org</a></p>
+<ul>
+<li class="fragment">Young, modern, well-designed</li>
+<li class="fragment">Much larger UI library, more than just games</li>
+<li class="fragment">Runs on iOS</li>
+</ul>
+</section>
+<section id="recap" class="slide level2">
+<h1>Recap</h1>
+<ul>
+<li class="fragment">Extensive but easy to use</li>
+<li class="fragment">Slow but not too slow</li>
+<li class="fragment">Great for prototyping!</li>
+</ul>
+</section>
+<section id="powerful" class="slide level2">
+<h1>Powerful</h1>
+<p>You can make great games with Pygame!</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/chZZpo85b-g?rel=0" frameborder="0" allowfullscreen>
+</iframe>
+</section>
+<section id="documentation" class="slide level2">
+<h1>Documentation</h1>
+<ul>
+<li class="fragment"><a href="http://pygame.org/docs/" class="uri">http://pygame.org/docs/</a></li>
+<li class="fragment">Read the <a href="http://www.pygame.org/docs/tut/newbieguide.html">Newbie Guide</a></li>
+<li class="fragment">&quot;Learn&quot; section of the website - books and tutorials</li>
+</ul>
+</section>
+<section id="examples" class="slide level2">
+<h1>Examples</h1>
+<p>Pygame ships with a number of small examples</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">python <span class="op">-</span>mpygame.examples.chimp</code></pre></div>
+</section>
+<section id="making-games" class="slide level2">
+<h1>Making games</h1>
+<p>At a <em>very</em> basic level, we need the ability to:</p>
+<ul>
+<li class="fragment">draw on the screen</li>
+<li class="fragment">handle user input</li>
+<li class="fragment">maybe play sounds</li>
+</ul>
+</section>
+<section id="game-loop" class="slide level2">
+<h1>Game Loop</h1>
+<p>You must write the &quot;main&quot; loop</p>
+<ul>
+<li class="fragment">manually process events</li>
+<li class="fragment">update game logic</li>
+<li class="fragment">render frame</li>
+</ul>
+</section>
+<section id="game-loop-1" class="slide level2">
+<h1>Game Loop</h1>
+<p>Simplest approach: do it all in one loop</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> main():
+    <span class="cf">while</span> <span class="va">True</span>:
+        <span class="cf">for</span> event <span class="op">in</span> events:
+            handle(event)
+        <span class="cf">for</span> entity <span class="op">in</span> game:
+            entity.update()
+        <span class="cf">for</span> entity <span class="op">in</span> game:
+            entity.render()</code></pre></div>
+</section>
+<section id="pyglet-1" class="slide level2">
+<h1>Pyglet</h1>
+<p>Contrast this with Pyglet:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> main():
+    win <span class="op">=</span> pyglet.window.Window()
+
+    <span class="at">@win.event</span>
+    <span class="kw">def</span> on_draw():
+        win.clear()
+        entity.render()
+
+    <span class="kw">def</span> update(dt):
+        entity.update()
+
+    pyglet.clock.schedule_interval(update, <span class="fl">0.2</span>)
+    pyglet.app.run()</code></pre></div>
+</section>
+<section id="api" class="slide level2">
+<h1>API</h1>
+<ul>
+<li class="fragment"><a href="http://pygame.org/docs" class="uri">http://pygame.org/docs</a></li>
+</ul>
+</section>
+<section id="initialize" class="slide level2">
+<h1>Initialize</h1>
+<ul>
+<li class="fragment"><code>pygame.init()</code></li>
+</ul>
+</section>
+<section id="display" class="slide level2">
+<h1>Display</h1>
+<ul>
+<li class="fragment"><code>pygame.display.init()</code></li>
+<li class="fragment"><code>pygame.display.set_mode(resolution, flags=0, ...)</code></li>
+<li class="fragment">flags: FULLSCREEN, OPENGL, RESIZABLE, etc.</li>
+<li class="fragment"><code>pygame.display.update()</code></li>
+<li class="fragment"><code>python -mpygame.examples.glcube</code></li>
+</ul>
+</section>
+<section id="surface" class="slide level2">
+<h1>Surface</h1>
+<ul>
+<li class="fragment">object for representing images, including display</li>
+<li class="fragment">like a &quot;blank piece of paper&quot;</li>
+<li class="fragment"><code>pygame.Surface.blit</code> - draw one image onto another</li>
+<li class="fragment"><code>pygame.Surface.fill</code> - fill with solid color</li>
+<li class="fragment"><code>pygame.Surface.set_alpha</code> - set transparency level</li>
+<li class="fragment"><code>python -mpygame.examples.scroll</code></li>
+</ul>
+</section>
+<section id="events" class="slide level2">
+<h1>Events</h1>
+<ul>
+<li class="fragment">key presses</li>
+<li class="fragment">mouse motion and clicks</li>
+<li class="fragment">joystick manipulation</li>
+<li class="fragment">window resize</li>
+<li class="fragment">Event queue must be flushed continuously: <code>for event in pygame.event.get(): ...</code></li>
+<li class="fragment"><code>python -mpygame.examples.eventlist</code></li>
+</ul>
+</section>
+<section id="sprites" class="slide level2">
+<h1>Sprites</h1>
+<ul>
+<li class="fragment"><code>pygame.sprite.Sprite</code></li>
+<li class="fragment"><code>pygame.sprite.Group</code></li>
+<li class="fragment"><code>pygame.sprite.collide_{rect, circle, mask}</code></li>
+<li class="fragment"><code>python -mpygame.examples.testsprite</code></li>
+</ul>
+</section>
+<section id="fonts" class="slide level2">
+<h1>Fonts</h1>
+<ul>
+<li class="fragment"><code>pygame.font.init</code></li>
+<li class="fragment"><code>pygame.font.Font(filename)</code></li>
+<li class="fragment"><code>python -mpygame.examples.fonty</code></li>
+<li class="fragment"><code>python -mpygame.examples.freetype_misc</code></li>
+</ul>
+</section>
+<section id="images" class="slide level2">
+<h1>Images</h1>
+<ul>
+<li class="fragment"><code>pygame.image.load(filename) -&gt; Surface</code></li>
+<li class="fragment"><code>pygame.image.load(fileobj) -&gt; Surface</code></li>
+<li class="fragment"><code>pygame.image.save(Surface, filename)</code></li>
+<li class="fragment"><code>python -mpygame.examples.moveit</code></li>
+</ul>
+</section>
+<section id="mixer" class="slide level2">
+<h1>Mixer</h1>
+<ul>
+<li class="fragment"><code>pygame.mixer.init(frequency, size, channels, buffer)</code></li>
+<li class="fragment"><code>pygame.mixer.Channel</code></li>
+<li class="fragment"><code>pygame.mixer.Sound</code></li>
+<li class="fragment"><code>python -mpygame.examples.sound</code></li>
+</ul>
+</section>
+<section id="time" class="slide level2">
+<h1>Time</h1>
+<ul>
+<li class="fragment"><code>pygame.time.wait</code> (sleep)</li>
+<li class="fragment"><code>pygame.time.Clock</code></li>
+</ul>
+</section>
+<section id="rect" class="slide level2">
+<h1>Rect</h1>
+<ul>
+<li class="fragment">&quot;Rects are your friends&quot;</li>
+<li class="fragment">Lowly rectangle object</li>
+<li class="fragment">Used by much of Pygame's API</li>
+<li class="fragment"><code>pygame.Rect(left, top, width, height)</code></li>
+<li class="fragment"><code>pygame.Rect((left, top), (width, height))</code></li>
+<li class="fragment">etc.</li>
+</ul>
+</section>
+<section id="tips" class="slide level2">
+<h1>Tips</h1>
+<p>(borrowed from the <a href="http://www.pygame.org/docs/tut/newbieguide.html">Newbie Guide</a>)</p>
+</section>
+<section id="loading-images" class="slide level2">
+<h1>Loading Images</h1>
+<p>Use <code>surface.convert()</code> after loading an image for up to 6x increase in blitting speed</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">background <span class="op">=</span> pygame.image.load(<span class="st">&quot;background.png&quot;</span>)
+background.convert()</code></pre></div>
+<p>This changes the surface's pixel format to match that of the display</p>
+</section>
+<section id="dirty-rects" class="slide level2">
+<h1>&quot;Dirty&quot; Rects</h1>
+<p>Only update &quot;dirty&quot; rects</p>
+<p><code>pygame.display.update()</code> updates the entire screen, which isn't always what you want</p>
+<p>Pass a <code>Rect</code> or list of <code>Rects</code> to <code>pygame.display.update()</code></p>
+<ul>
+<li class="fragment">Not useful for things like side-scrollers</li>
+<li class="fragment">Not needed for low-framerate games/apps</li>
+</ul>
+</section>
+<section id="collision-detection" class="slide level2">
+<h1>Collision Detection</h1>
+<ul>
+<li class="fragment">Don't bother with per-pixel collision detection</li>
+<li class="fragment">Python is too slow</li>
+<li class="fragment">Just use &quot;sub-rect&quot; collision</li>
+</ul>
+</section>
+<section id="input-handling" class="slide level2">
+<h1>Input Handling</h1>
+<p>2 methods of determining state...</p>
+</section>
+<section id="input-handling-1" class="slide level2">
+<h1>Input Handling</h1>
+<ol type="1">
+<li class="fragment"><p>Directly check state of the device:</p>
+<ul>
+<li class="fragment"><code>pygame.key.get_pressed()</code></li>
+<li class="fragment"><code>pygame.mouse.get_pressed()</code></li>
+<li class="fragment"><code>pygame.mouse.get_pos()</code></li>
+</ul></li>
+</ol>
+</section>
+<section id="input-handling-2" class="slide level2">
+<h1>Input Handling</h1>
+<ol start="2" type="1">
+<li class="fragment"><p>Monitor event queue:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> event <span class="op">in</span> pygame.event.get():
+    <span class="cf">if</span> event.<span class="bu">type</span> <span class="op">==</span> ...</code></pre></div>
+<ul>
+<li class="fragment"><code>KEYDOWN</code>, <code>KEYUP</code></li>
+<li class="fragment"><code>MOUSEMOTION</code>, <code>MOUSEBUTTONDOWN</code>, <code>MOUSEBUTTONUP</code></li>
+</ul></li>
+</ol>
+</section>
+<section id="showcase" class="slide level2">
+<h1>Showcase</h1>
+</section>
+<section class="slide level2">
+
+<p><a href="http://pygame.org/project/2075/">QANAT</a> - Galaxians-like SHMUP</p>
+<p>by Paul Patterson</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/wxebbXCEQko?rel=0" frameborder="0" allowfullscreen>
+</iframe>
+</section>
+<section class="slide level2">
+
+<p><a href="http://pygame.org/project/2389/">SubTerrex</a></p>
+<p>by Paul Patterson</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/LwbVzT7aGAE?rel=0" frameborder="0" allowfullscreen>
+</iframe>
+</section>
+<section class="slide level2">
+
+<p><a href="http://www.imitationpickles.org/barbie/">Barbie Seahorse Adventures</a></p>
+<p>by Phil Hassey</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/chZZpo85b-g?rel=0" frameborder="0" allowfullscreen>
+</iframe>
+</section>
+<section class="slide level2">
+
+<p><a href="http://www.jordantrudgett.com/ardentryst/about-ardentryst/">Ardentryst</a> - RPG</p>
+<p>by Jordan Trudgett</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/uBGtm_r6_mY?rel=0" frameborder="0" allowfullscreen>
+</iframe>
+</section>
+<section class="slide level2">
+
+<p><a href="http://fretsonfire.sourceforge.net/">Frets on Fire</a> - Guitar Hero clone</p>
+<p>by Sami Kyöstilä</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/c5i6SxSAY4Q?rel=0" frameborder="0" allowfullscreen>
+</iframe>
+</section>
+<section class="slide level2">
+
+<p><a href="http://pygame.org/project-Void+Infinity-2195-.html">Void Infinity</a> - Space RTS</p>
+<p>by Jeremy Gagnier</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/Pino_AhZI_Y?t=9m10s&amp;rel=0" frameborder="0" allowfullscreen>
+</iframe>
+</section>
+<section id="others" class="slide level2">
+<h1>Others</h1>
+<ul>
+<li class="fragment"><a href="http://pygame.org/project-Star+Pusher+(Sokoban+clone)-1900-.html">StarPusher</a> - Puzzle game by Al Sweigart</li>
+<li class="fragment"><a href="http://www.pygame.org/project-Ulmo&#39;s+Adventure-2042-.html">Ulmo's Adventure</a> - Zelda-like adventure game by Sam Eldred</li>
+<li class="fragment"><a href="http://www.pygame.org/project-SOLARWOLF-44-.html">SolarWolf</a> - Arcade shooter</li>
+<li class="fragment"><a href="http://pygame.org/project/338/">Albow</a> - GUI library by Gregory Ewing</li>
+</ul>
+</section>
+<section id="demo" class="slide level2">
+<h1>Demo</h1>
+<ol type="1">
+<li class="fragment">Import/Initialize</li>
+<li class="fragment">Load resources</li>
+<li class="fragment">Main loop
+<ul>
+<li class="fragment">event loop</li>
+<li class="fragment">update</li>
+<li class="fragment">draw</li>
+</ul></li>
+</ol>
+</section>
+<section id="basics" class="slide level2">
+<h1>Basics</h1>
+</section>
+<section id="snake" class="slide level2">
+<h1>Snake</h1>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
