@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+body {
+    font-family: 'Droid Serif';
+}
+
+.remark-slide-content {
+    background: linear-gradient(170deg, white, #f1f1ff);
+}
+
+.remark-slide-content h1 {
+    font-size: 84px;
+}
+
+.hljs-default .hljs {
+    background-color: white;
+}
+
+.remark-slide-content h4 {
+    font-size: 36px;
+}
+.remark-slide-content p {
+    font-size: 36px;
+}
+.remark-slide-content li {
+    font-size: 36px;
+}
+
+
+
+li {
+    line-height: 1.75em;
+}
+
+code {
+    background-color: #f5f89c;
+    padding: 6px;
+}
+
+.remark-code, .remark-inline-code {
+    font-family: 'Ubuntu Mono';
+    font-size: 32px;
+}
+
+.remark-notes-area h4 {
+    font-size: 14px;
+}
+.remark-notes-area p {
+    font-size: 14px;
+}
+.remark-notes-area li {
+    font-size: 14px;
+}
+.remark-notes-area code.remark-inline-code {
+    font-size: 14px;
+}
