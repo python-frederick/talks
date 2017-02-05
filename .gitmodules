@@ -4,3 +4,6 @@
 [submodule "2016-11-ansible"]
 	path = 2016-11-ansible
 	url = git@github.com:kenfusion/talks_ansible.git
+[submodule "2017-02-troposphere"]
+	path = 2017-02-troposphere
+	url = https://github.com/python-frederick/2017-02-troposphere
