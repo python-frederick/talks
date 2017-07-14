@@ -7,3 +7,6 @@
 [submodule "2017-02-troposphere"]
 	path = 2017-02-troposphere
 	url = https://github.com/python-frederick/2017-02-troposphere
+[submodule "2017-07-pyspark"]
+	path = 2017-07-pyspark
+	url = https://github.com/python-frederick/pyspark
