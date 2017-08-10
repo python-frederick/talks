@@ -226,7 +226,7 @@ Not a new idea. See also: Bundler, Cargo, Composer, Yarn
 
 ---
 
-# `Pipefile` anatomy
+# `Pipfile` anatomy
 
 --
 ```toml
