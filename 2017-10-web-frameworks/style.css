@@ -3,21 +3,26 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
 body {
-    color: #0973ba;
+    color: #034a79;
     font-family: 'Droid Sans';
 }
 
 a {
-  color: #ff9d27;
+  color: #69afdd;
 }
 
 .remark-slide-content {
-    background: linear-gradient(170deg, white, #f1f1ff);
+    /* background: linear-gradient(170deg, white, #f1f1ff); */
+    background: linear-gradient(170deg, #69afdd, #ffda73);
 }
 
 .remark-slide-content h1 {
     font-size: 84px;
     font-family: 'Droid Serif';
+    color: white;
+}
+.remark-slide-content h2 {
+    color: white;
 }
 
 .hljs-default .hljs {
