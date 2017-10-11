@@ -44,7 +44,7 @@ Things to think about before you start.
 * Do you need an API to power a React, Angular, Ember, or Vue frontend?
 
 --
-* Do you like enjoy connecting components or using a
+* Do you enjoy connecting components or using a
   pre-integrated approach?
 
 ???
@@ -77,6 +77,11 @@ class: center
 --
 
 I work on Django daily for work and it heavily influences my views.
+
+???
+
+Storybird gets a lot done with a small team and Django.
+
 --
 
 # #sorrynotsorry
@@ -177,6 +182,38 @@ class: center, middle
 The scenario: how do we make a "Hello World" HTML and JSON endpoint.
 
 "endpoint" is a URL. /html or /json
+
+---
+
+# Feature Envy?
+
+--
+* Templates
+
+???
+
+All the frameworks *can* render HTML and do JSON so what do we need to care about?
+
+* Falcon - nope, nope, nope, nope
+* API Star - `render_template` J2, nope, Django ORM or SQL Alchemy, nope
+* Flask - `render_template` J2, WTForms, SQL Alchemy, nope
+* Pyramid - renderer arg in `view_config` J2 Chameleon Mako, Deform, SQL Alchemy ZODB, perms/principal
+* Django - `render`, forms, Django ORM, lots of tools
+
+Other topics: db migrations, caching, email, i18n, logging, background work
+
+Do you want to add something when you need it
+or ignore it when you don't need it?
+
+--
+* Form handling
+
+--
+* Database connectivity
+
+--
+* Security
+
 ---
 
 class: center
