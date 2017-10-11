@@ -185,7 +185,7 @@ The scenario: how do we make a "Hello World" HTML and JSON endpoint.
 
 ---
 
-# Feature Envy?
+# Feature Envy? &#x1F60D;
 
 --
 * Templates
