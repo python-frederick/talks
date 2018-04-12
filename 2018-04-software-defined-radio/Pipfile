@@ -8,6 +8,8 @@ name = "pypi"
 [packages]
 pyrtlsdr = "*"
 matplotlib = "*"
+"glob2" = "*"
+geopy = "*"
 
 [requires]
 python_version = "3.6"
